@@ -1,0 +1,110 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include "conio.h"
+
+using namespace std;
+
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	const int N = 20;
+	const int M = 25;
+	double X_polinomio[N];
+	double Y_polinomio[M];
+	double Z_polinomio[N+M];
+	int X_tamaño;
+	int Y_tamaño;
+	int Z_tamaño;
+	int i,j,k;
+	cout << "Tamaño del polinomio A: ";
+	cin >> X_tamaño;
+	i = 0;
+	while (i < X_tamaño)
+	{
+		cout << "X[" << i << "]= ";
+		cin >> X_polinomio[i];
+		i++;
+	}
+	cout << "Tamaño del polinomio B: ";
+	cin >> Y_tamaño;
+	i = 0;
+	while (i < Y_tamaño)
+	{
+		cout << "Y[" << i << "]= ";
+		cin >> Y_polinomio[i];
+		i++;
+	}
+	int opcion;
+	cout << "0: Salir" << endl;
+	cout << "1: Sumar" << endl;
+	cout << "2: Restar" << endl;
+	cout << "3: Multiplicar" << endl;
+	cout << "4: Dividir" << endl;
+	cout << "5: Derivar" << endl;
+	cout << "6: Integrar" << endl;
+	cout << "7: Multiplicar escalar" << endl;
+	cin >> opcion;
+	while((opcion > 0) && (opcion < 8)){
+
+		if(opcion == 1){
+			i = 0;
+			j = 0;
+			k = 0;
+
+			while ((i < X_tamaño) && (j < Y_tamaño)){
+			Z_polinomio[k] = X_polinomio[i] + Y_polinomio[j];
+			i++;
+			j++;
+			k++;
+			}
+			while (i < X_tamaño){
+				Z_polinomio[k] = X_polinomio[i];
+				i++;
+				k++;
+			}
+			while (j < Y_tamaño){
+				Z_polinomio[k] = Y_polinomio[j];
+				j++;
+				k++;
+			}
+			Z_tamaño = X_tamaño + Y_tamaño ; 
+			while (i < Z_tamaño){
+				cout << " POLINOMIO_Z[" << i << "]= " << Z_polinomio[i] << endl;
+				i++;
+			}
+			getch();
+		} //fin de If suma
+		if(opcion == 2){
+		
+		}
+
+		if(opcion == 3){
+			for(i = 0; i < X_tamaño + Y_tamaño; i++){
+				Z_polinomio[i] = 0;
+			}
+			i = 0;
+			while (i < X_tamaño)
+			{
+				j = 0;
+				while (j < Y_tamaño){
+					Z_polinomio[i+j] = X_polinomio[i] * Y_polinomio[j] + Z_polinomio[i+j];
+					j++;
+				}
+				i++;
+			}
+
+			Z_tamaño = i + j - 1;
+			
+			while (i < Z_tamaño){
+				cout << " POLINOMIO_Z[" << i << "]= " << Z_polinomio[i] << endl;
+				i++;
+			}
+			getch();
+
+		}
+
+
+	return 0;
+	}
+}
